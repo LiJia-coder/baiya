@@ -1,0 +1,13 @@
+{
+  "name": "ski-rental",
+  "version": "1.0.0",
+  "description": "滑雪装备租赁系统",
+  "scripts": {
+    "client": "cd client && npm run dev",
+    "server": "cd server && npm run dev",
+    "admin": "cd admin && npm run dev",
+    "install:all": "npm install && cd client && npm install && cd ../server && npm install && cd ../admin && npm install"
+  },
+  "author": "",
+  "license": "ISC"
+}
