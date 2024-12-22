@@ -1,10 +1,43 @@
 {
-  "name": "Node.js",
+  "name": "Node.js & MongoDB",
   "image": "mcr.microsoft.com/devcontainers/javascript-node:0-18",
   "features": {
     "ghcr.io/devcontainers/features/node:1": {},
-    "ghcr.io/devcontainers/features/git:1": {}
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/mongodb:1": {
+      "version": "4.4"
+    }
   },
-  "forwardPorts": [3000, 5173],
-  "postCreateCommand": "npm install"
+  "forwardPorts": [3000, 5173, 27017],
+  "portsAttributes": {
+    "3000": {
+      "label": "Backend API",
+      "onAutoForward": "notify"
+    },
+    "5173": {
+      "label": "Frontend Dev Server",
+      "onAutoForward": "notify"
+    },
+    "27017": {
+      "label": "MongoDB",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "cd server && npm install && cd ../client && npm install",
+  "postStartCommand": "mongod --fork --logpath /var/log/mongodb.log",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Vue.volar",
+        "Vue.vscode-typescript-vue-plugin",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "mongodb.mongodb-vscode",
+        "ms-azuretools.vscode-docker"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  }
 }
