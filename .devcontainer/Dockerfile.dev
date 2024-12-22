@@ -1,0 +1,13 @@
+FROM mcr.microsoft.com/devcontainers/javascript-node:16
+
+# 安装额外的工具
+RUN apt-get update && apt-get install -y \
+    nginx \
+    vim \
+    && rm -rf /var/lib/apt/lists/*
+
+# 安装全局 npm 包
+RUN npm install -g @vue/cli nodemon
+
+# 设置工作目录
+WORKDIR /app

@@ -4,7 +4,6 @@
     <header class="header">
       <div class="container header-content">
         <router-link to="/" class="logo">
-          <img src="@/assets/logo.png" alt="白鸦滑雪" />
           <span>白鸦滑雪装备租赁</span>
         </router-link>
         
@@ -72,9 +71,11 @@
 </template>
 
 <script setup>
-import { useUserStore } from '@/stores/user'
+import { useUserStore } from './stores/user'
 import { ArrowDown } from '@element-plus/icons-vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const userStore = useUserStore()
 
 const logout = () => {
@@ -113,9 +114,8 @@ const logout = () => {
     font-size: 20px;
     font-weight: bold;
 
-    img {
-      height: 40px;
-      margin-right: 10px;
+    span {
+      margin-left: 10px;
     }
   }
 
