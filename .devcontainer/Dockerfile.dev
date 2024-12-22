@@ -1,13 +1,18 @@
-FROM mcr.microsoft.com/devcontainers/javascript-node:16
+FROM node:18
 
-# 安装额外的工具
+# 安装基本工具
 RUN apt-get update && apt-get install -y \
-    nginx \
-    vim \
+    git \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
-# 安装全局 npm 包
-RUN npm install -g @vue/cli nodemon
-
-# 设置工作目录
 WORKDIR /app
+
+# 安装全局依赖
+RUN npm install -g nodemon
+
+# 设置环境变量
+ENV NODE_ENV=development
+
+# 默认命令
+CMD ["sleep", "infinity"]
