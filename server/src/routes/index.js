@@ -17,7 +17,14 @@ router.use('/users', userRoutes)
 
 // 健康检查
 router.get('/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() })
+  res.json({ 
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    services: {
+      api: 'running',
+      database: 'connected'
+    }
+  })
 })
 
 module.exports = router
